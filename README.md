@@ -1,7 +1,7 @@
 # car-management-application
 
 
-# User Authentication Featuew
+## User Authentication
 
 This feature provides a user authentication system using Django and Django REST Framework (DRF) with JWT tokens for login and token refresh functionality. The system allows users to register, log in, and receive JWT tokens for secure authentication. Users can log in using either their username or email.
 
