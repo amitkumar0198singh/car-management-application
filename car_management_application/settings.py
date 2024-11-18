@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'account',
-    'api',
+    'cars',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +146,9 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'cars.authentication.JWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
@@ -184,3 +187,6 @@ AUTHENTICATION_BACKENDS = [
     'account.backends.UsernameOrEmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

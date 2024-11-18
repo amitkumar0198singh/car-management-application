@@ -34,4 +34,4 @@ class User(AbstractBaseUser):
         return self.name
     
     class Meta:
-        db_table = 'user'
+        db_table = 'users'
