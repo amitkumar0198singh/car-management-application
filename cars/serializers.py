@@ -19,7 +19,6 @@ class CarSerializer(serializers.ModelSerializer):
         return value
     
     def create(self, validated_data):
-        import pdb; pdb.set_trace()
         images = validated_data.pop('images', [])
         car = Car.objects.create(**validated_data)
         images = self.context.get('request').FILES.getlist('images')
@@ -27,7 +26,20 @@ class CarSerializer(serializers.ModelSerializer):
             car_images = [CarImage(car=car, image=image) for image in images]
             CarImage.objects.bulk_create(car_images)
         except Exception as e:
-            raise serializers.ValidationError(f"Error saving images: {str(e)}")
+            raise serializers.ValidationError(f'Error saving images: {str(e)}')
         return car
     
-            
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.description = validated_data.get('description', instance.description)
+        instance.tags = validated_data.get('tags', instance.tags)
+        images = self.context.get('request').FILES.getlist('images')
+        if images:
+            instance.images.all().delete()
+            try:
+                car_images = [CarImage(car=instance, image=image) for image in images]
+                CarImage.objects.bulk_create(car_images)
+            except Exception as e:
+                raise serializers.ValidationError(f'Error saving images: {str(e)}')
+        instance.save()
+        return instance
