@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'car_management_application.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'car_management_system',
-        'USER': 'root',
-        'PASSWORD': 'cBxvzd@6mi',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': 'YOUR_DATABASE_NAME',
+        'USER': 'YOUR_USER',
+        'PASSWORD': 'YOUR_PASSWORD',
+        'HOST': 'YOUR_HOST',
+        'PORT': 'PORT_NUMBER',
     }
 }
 
